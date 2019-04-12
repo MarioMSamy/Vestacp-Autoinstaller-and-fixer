@@ -26,10 +26,11 @@ cp /etc/letsencrypt/live/$hostnameset/privkey.pem /usr/local/vesta/ssl/certifica
 service vesta restart
 echo "fix ssl issue done !"
 echo "Fix phpmyadmin problem"
-curl -O -k https://raw.githubusercontent.com/skurudo/phpmyadmin-fixer/master/pma-debian.sh && chmod +x pma-debian.sh && ./pma-debian.sh
+curl -O -k https://raw.githubusercontent.com/skurudo/phpmyadmin-fixer/master/pma-debian.sh
+chmod +x pma-debian.sh
+bash pma-debian.sh
 echo "Fix phpmyadmin problem done !"
 echo "now you can login to vestacp"
-/*fix wordpress ftp issue*/
 chown -R admin:admin /home/admin/web/gate.com/public_html
 echo server : $hostnameset:8083
 echo password : $serverpass
