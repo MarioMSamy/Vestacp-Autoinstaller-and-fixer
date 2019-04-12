@@ -27,8 +27,17 @@ echo Please enter your server password
 read serverpass
 if [ -z "$serverpass" ]
 then
-      serverpass=000000
-echo "we set the default vale"
+     # Defining password-gen function
+gen_pass() {
+    MATRIX='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
+    LENGTH=10
+    while [ ${n:=1} -le $LENGTH ]; do
+        PASS="$PASS${MATRIX:$(($RANDOM%${#MATRIX})):1}"
+        let n+=1
+    done
+    echo "$PASS"
+}
+
 else
       echo "Password set"
 fi
@@ -52,11 +61,14 @@ cp /etc/letsencrypt/live/$hostnameset/privkey.pem /usr/local/vesta/ssl/certifica
 service vesta restart
 echo "fix ssl issue done !"
 echo "Fix phpmyadmin problem"
+cd /tmp/
 curl -O -k https://raw.githubusercontent.com/skurudo/phpmyadmin-fixer/master/pma-debian.sh && chmod +x pma-debian.sh && ./pma-debian.sh
 echo "Fix phpmyadmin problem done !"
 echo "now you can login to vestacp"
+/*fix wordpress ftp issue*/
+chown -R admin:admin /home/admin/web/gate.com/public_html
 echo server : $hostnameset:8083
 echo password : $serverpass
 echo Congratolations
 echo Writen by Mario M. Samy
-echo contact me if there is any problem mario.magdy2012@gmail
+echo contact me if there is any problem mario.magdy2012@gmail.com
