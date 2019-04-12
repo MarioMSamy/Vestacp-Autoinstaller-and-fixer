@@ -1,46 +1,13 @@
-clear
+#!/bin/bash
 echo "Welcome , I will setup server for you and fix many problems too"
 echo "so , Please enter your hostname need to set"
-read hostnameset
-if [ -z "$hostnameset" ]
-then
-	hostnameoutput=$( hostname )
-	hostnameset=$hostnameoutput
-echo "we set the default vale"
-else
-      echo "Thank you"
-fi
-wait
+read hostnameset;
 echo your hostname is : $hostnameset
 wait
 echo Please enter your server password
 read servermail
-if [ -z "$servermail" ]
-then
-      servermail=mario.magdy2012@gmail.com
-echo "we set the default value"
-else
-      echo "Admin Mail set"
-fi
-wait
 echo Please enter your server password
 read serverpass
-if [ -z "$serverpass" ]
-then
-     # Defining password-gen function
-gen_pass() {
-    MATRIX='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
-    LENGTH=10
-    while [ ${n:=1} -le $LENGTH ]; do
-        PASS="$PASS${MATRIX:$(($RANDOM%${#MATRIX})):1}"
-        let n+=1
-    done
-    echo "$PASS"
-}
-
-else
-      echo "Password set"
-fi
 apt install curl zip unzip
 cd /tmp/
 curl -O http://vestacp.com/pub/vst-install.sh
@@ -69,6 +36,6 @@ echo "now you can login to vestacp"
 chown -R admin:admin /home/admin/web/gate.com/public_html
 echo server : $hostnameset:8083
 echo password : $serverpass
-echo Congratolations
-echo Writen by Mario M. Samy
+echo "Congratolations"
+echo "Writen by Mario M Samy"
 echo "contact me if there is any problem mario.magdy2012@gmail.com"
