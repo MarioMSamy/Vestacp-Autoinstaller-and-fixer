@@ -9,7 +9,6 @@ read servermail
 echo Please enter your server password
 read serverpass
 apt install curl zip unzip
-cd /tmp/
 curl -O http://vestacp.com/pub/vst-install.sh
 bash vst-install.sh --nginx yes --apache yes --phpfpm no --named yes --remi yes --vsftpd yes --proftpd no --iptables yes --fail2ban yes --quota yes --exim yes --dovecot yes --spamassassin yes --clamav yes --softaculous no --mysql yes --postgresql no --hostname $hostnameset --email $servermail --password $serverpass
 wait
@@ -18,7 +17,6 @@ echo "fix some issues for you "
 echo "fix ssl issue"
 mv /usr/local/vesta/ssl/certificate.crt /usr/local/vesta/ssl/unusablecer.crt
 mv /usr/local/vesta/ssl/certificate.key /usr/local/vesta/ssl/unusablecer.key
-cd /root
 git clone https://github.com/letsencrypt/letsencrypt
 cd letsencrypt
 ./letsencrypt-auto --help
@@ -28,7 +26,6 @@ cp /etc/letsencrypt/live/$hostnameset/privkey.pem /usr/local/vesta/ssl/certifica
 service vesta restart
 echo "fix ssl issue done !"
 echo "Fix phpmyadmin problem"
-cd /tmp/
 curl -O -k https://raw.githubusercontent.com/skurudo/phpmyadmin-fixer/master/pma-debian.sh && chmod +x pma-debian.sh && ./pma-debian.sh
 echo "Fix phpmyadmin problem done !"
 echo "now you can login to vestacp"
