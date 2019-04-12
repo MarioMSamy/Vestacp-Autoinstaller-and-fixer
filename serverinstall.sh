@@ -71,4 +71,4 @@ echo server : $hostnameset:8083
 echo password : $serverpass
 echo Congratolations
 echo Writen by Mario M. Samy
-echo contact me if there is any problem mario.magdy2012@gmail.com
+echo "contact me if there is any problem mario.magdy2012@gmail.com"
